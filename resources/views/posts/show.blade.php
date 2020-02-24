@@ -7,4 +7,6 @@
     {{ $post->body }}
 </div>
 
+@include('posts.comments.comment')
+
 @endsection
