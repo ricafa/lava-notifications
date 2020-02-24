@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Posts;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommentFormRequest;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreCommentFormRequest $request)
     {
         //dd($request->all());
         $comment = $request->user()->comments()->create($request->all());
@@ -15,6 +16,6 @@ class CommentController extends Controller
 
         return redirect()
             ->route('posts.show', $comment->post->id)
-            ->withSuccess('Comentãrio realizado com sucesso');
+            ->withSuccess('Comentário realizado com sucesso');
     }
 }

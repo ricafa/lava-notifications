@@ -1,9 +1,19 @@
 <hr />
-@if(auth()->check())
 
+@if(auth()->check())
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -27,11 +37,12 @@
 @endif
 
 <hr>
-<h2>Comentários</h2>
+<h2>Comentários ({{ $post->comments->count() }})</h2>
 @forelse ($post->comments->sortByDesc('id') as $comment)
-<p> {{ $comment->title }} </p>
-<p> {{ $comment->body }} </p>
-<hr>
+    <p> <b>{{$comment->user->name}}</b> comentou: </p>
+    <p>Título: {{ $comment->title }} </p>
+    <p>&nbsp;&nbsp;&nbsp; {{ $comment->body }} </p>
+    <hr>
 @empty
-<p>Seja o primeiro a comentar!</p>   
+    <p>Seja o primeiro a comentar!</p>   
 @endforelse

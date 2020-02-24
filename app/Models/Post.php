@@ -21,4 +21,13 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function qtdComentarios()
+    {
+        $count = $this->comments->count();
+        if($count > 1)
+            return "$count comentários";
+        else
+            return "$count comentário";
+    }
 }
