@@ -49374,7 +49374,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['notification']
+    props: ['notification'],
+    computed: {
+        commenter: function commenter() {
+            return this.notification.comment.user.name;
+        },
+        postTitle: function postTitle() {
+            return this.notification.comment.post.title;
+        }
+    }
 });
 
 /***/ }),
@@ -49386,7 +49394,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-    _vm._v("\n    " + _vm._s(_vm.notification.comment.post.title) + "\n")
+    _vm._v(
+      "\n    " + _vm._s(_vm.commenter) + " - " + _vm._s(_vm.postTitle) + "\n"
+    )
   ])
 }
 var staticRenderFns = []
